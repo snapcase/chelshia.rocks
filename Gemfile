@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 gem 'nobrainer'
-gem 'libxml-ruby'
+gem 'rest-client'
+gem 'xml-simple'
