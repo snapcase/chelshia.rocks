@@ -27,7 +27,7 @@ module ChelshiaRocks
     # @param steam_id [String, #to_s] steam ID
     # @param request [true, false] whether to fetch this user from the API if it doesn't exist
     def self.user(steam_id, request: true)
-      user = where(steam_id: steam_id.to_s).all.first
+      user = where(steam_id: steam_id.to_s).first
       return user if user
       return unless request
 
