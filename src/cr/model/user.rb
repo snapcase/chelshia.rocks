@@ -30,6 +30,7 @@ module ChelshiaRocks
     # Update this user's score
     def update_score!
       value = leaderboards.map do |l|
+        next 0 unless l.scored?
         Score.value l.user(self.steam_id)&.rank || 0
       end.reduce(:+)
 
