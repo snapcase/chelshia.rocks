@@ -42,14 +42,14 @@ module ChelshiaRocks
     # a request will be made to cache it from Steam unless
     # `request` is `false`.
     # @param name [String] the name of this leaderboard
-    def self.leaderboard(leaderboard_id, app_id: KHIMERA_APP_ID, request: true)
+    def self.leaderboard(leaderboard_id, name: nil, app_id: KHIMERA_APP_ID, request: true)
       app_id = app_id.to_s
       leaderboard_id = leaderboard_id.to_s
       leaderboard = where(app_id: app_id, leaderboard_id: leaderboard_id).all.first
       return leaderboard if leaderboard
       return unless request
 
-      from_hash Steam::API.leaderboard(app_id, leaderboard_id)
+      from_hash Steam::API.leaderboard(app_id, leaderboard_id), name
     end
 
     # Refreshes this leaderboard's entries by making
@@ -75,12 +75,13 @@ module ChelshiaRocks
     end
 
     # Creates a new Leaderboard from a Steam API leaderboard hash
-    def self.from_hash(data)
+    def self.from_hash(data, name = nil)
       new_board = create(
         app_id: data[:appid],
         leaderboard_id: data[:leaderboardid],
         total_entries: data[:totalleaderboardentries].to_i,
-        latest_entries: []
+        latest_entries: [],
+        name: name
       )
 
       new_board.refresh! data[:entries][:entry]
