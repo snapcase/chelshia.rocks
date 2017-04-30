@@ -24,6 +24,9 @@ module ChelshiaRocks
     # The name of this leaderboard
     field :name, type: String
 
+    # Whether this leaderboard counts towards its player's scores
+    field :scored, type: Bool, default: true
+
     has_many :entrys
     has_many :users, through: :entrys
 
