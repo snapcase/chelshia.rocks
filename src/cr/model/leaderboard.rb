@@ -38,7 +38,7 @@ module ChelshiaRocks
     # a request will be made to cache it from Steam unless
     # `request` is `false`.
     # @param name [String] the name of this leaderboard
-    def self.leaderboard(app_id, leaderboard_id, request: true)
+    def self.leaderboard(leaderboard_id, app_id: KHIMERA_APP_ID, request: true)
       app_id = app_id.to_s
       leaderboard_id = leaderboard_id.to_s
       leaderboard = where(app_id: app_id, leaderboard_id: leaderboard_id).all.first
