@@ -14,6 +14,9 @@ module ChelshiaRocks
     # Time this user was created
     field :created_at, type: Time
 
+    # This user's game-wide score
+    field :score, type: Integer, default: 0
+
     has_many :entrys
 
     # URL to this user's steam profile
