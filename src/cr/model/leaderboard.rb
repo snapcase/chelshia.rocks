@@ -41,7 +41,7 @@ module ChelshiaRocks
     # The most recent entries for this board
     # @return [Array<Entry>]
     def board
-      latest_entries.map { |id| Entry.find id }
+      Entry.where(:id.in => latest_entries).to_a
     end
 
     # Returns a user's entry for this leaderboard
