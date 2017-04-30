@@ -24,7 +24,7 @@ module Steam
       get "stats/#{appid}/leaderboards/#{id}",
           start: start,
           end: _end,
-          t: Time.now
+          t: Time.now.to_i
     end
 
     def self.get(path = '', params = {})
