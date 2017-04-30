@@ -1,0 +1,8 @@
+# Paths
+bin/
+vendor/
+.bundle/
+
+# Files
+*.swp
+Gemfile.lock
