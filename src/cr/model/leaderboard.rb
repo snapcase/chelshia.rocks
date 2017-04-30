@@ -86,6 +86,11 @@ module ChelshiaRocks
       new_entries.map { |e| e.user.update_score! }
     end
 
+    # Helper to refresh all active boards
+    def self.refresh_all!
+      to_a.map(&:refresh!)
+    end
+
     # Creates a new Leaderboard from a Steam API leaderboard hash
     def self.from_hash(data, name = nil)
       new_board = create(
