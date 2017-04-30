@@ -38,6 +38,15 @@ module ChelshiaRocks
       value
     end
 
+    # Update's this users Steam data
+    def update!
+      data = Steam::API.user(steam_id)
+      update(
+        name: data[:steamid],
+        avatar_url: data[:avatarfull]
+      )
+    end
+
     # Fetches a user object from the database. If it isn't found,
     # a request will be made to cache it from Steam unless
     # `request` is `false`.
