@@ -1,3 +1,5 @@
+require_relative './score'
+
 module ChelshiaRocks
   class User
     include NoBrainer::Document
@@ -23,6 +25,17 @@ module ChelshiaRocks
     # URL to this user's steam profile
     def profile_url
       "#{Steam::API::BASE_URL}/profiles/#{steam_id}"
+    end
+
+    # Update this user's score
+    def update_score!
+      value = leaderboards.map do |l|
+        Score.value l.user(self.steam_id)&.rank || 0
+      end.reduce(:+)
+
+      update(score: value)
+
+      value
     end
 
     # Fetches a user object from the database. If it isn't found,
