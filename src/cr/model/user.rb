@@ -18,6 +18,7 @@ module ChelshiaRocks
     field :score, type: Integer, default: 0
 
     has_many :entrys
+    has_many :leaderboards, through: :entrys
 
     # URL to this user's steam profile
     def profile_url
