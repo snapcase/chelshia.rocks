@@ -1,4 +1,7 @@
 module ChelshiaRocks
+  # Steam App ID of Khimera: Destroy All Monster Girls
+  KHIMERA_APP_ID = 467380
+
   class Leaderboard
     include NoBrainer::Document
 
