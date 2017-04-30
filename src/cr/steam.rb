@@ -20,8 +20,8 @@ module Steam
     # @param start [Integer] index start of paginated responses
     # @param _end [Integer] index end of paginated responses
     # @return [Hash]
-    def leaderboard(appid, id, start = 1, _end = 20)
-      get "stats/#{appid}/leaderboards/#{id}",
+    def leaderboard(app_id, id, start = 1, _end = 20)
+      get "stats/#{app_id}/leaderboards/#{id}",
           start: start,
           end: _end,
           t: Time.now.to_i
