@@ -16,6 +16,11 @@ module ChelshiaRocks
 
     has_many :entrys
 
+    # URL to this user's steam profile
+    def profile_url
+      "#{Steam::API::BASE_URL}/profiles/#{steam_id}"
+    end
+
     # Fetches a user object from the database. If it isn't found,
     # a request will be made to cache it from Steam unless
     # `request` is `false`.
