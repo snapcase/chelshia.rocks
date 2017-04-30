@@ -25,7 +25,10 @@ module ChelshiaRocks
     field :name, type: String
 
     # Whether this leaderboard counts towards its player's scores
-    field :scored, type: Bool, default: true
+    field :scored, type: Boolean, default: true
+
+    # Timestamp of last update
+    field :last_updated, type: Time
 
     has_many :entrys
     has_many :users, through: :entrys
@@ -84,7 +87,7 @@ module ChelshiaRocks
         new_entries << entry
       end
 
-      update(latest_entries: updated_ranks)
+      update(latest_entries: updated_ranks, last_updated: Time.now)
 
       new_entries.map { |e| e.user.update_score! }
     end
