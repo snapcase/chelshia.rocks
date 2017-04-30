@@ -66,9 +66,10 @@ module ChelshiaRocks
       data ||= Steam::API.leaderboard(app_id, leaderboard_id)[:entries][:entry]
 
       updated_ranks = []
+      new_entries = []
 
       data.map do |e|
-        entry = Entry.create(
+        new_entries << Entry.create(
           score: e[:score],
           rank: e[:rank],
           timestamp: Time.now,
@@ -80,6 +81,8 @@ module ChelshiaRocks
       end
 
       update(latest_entries: updated_ranks)
+
+      new_entries.map { |e| e.user.update_score! }
     end
 
     # Creates a new Leaderboard from a Steam API leaderboard hash
