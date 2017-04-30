@@ -1,3 +1,7 @@
-require_relative 'lib/cr.rb'
+require 'sinatra/base'
+require 'haml'
 
-run Sinatra::Application
+require_relative 'src/cr'
+
+map('/leaderboards') { run LeaderboardController }
+map('/users') { run UserController }
