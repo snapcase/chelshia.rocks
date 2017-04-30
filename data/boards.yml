@@ -1,0 +1,36 @@
+---
+boards:
+  - name: Berserk Mode
+    id: 1324706
+  - name: CAKEBOY
+    id: 1242168
+  - name: EX Brine Cave
+    id: 1252119
+  - name: EX Icy Path
+    id: 1252117
+  - name: EX Tower of Pop
+    id: 1252116
+  - name: EX Windy Way
+    id: 1252118
+  - name: Harvest PERFECT RUN
+    id: 1873303
+  - name: Harvest Event
+    id: 1873302
+  - name: Mechanical Mayhem
+    id: 1252123
+  - name: Mt Afrokupa
+    id: 1252113
+  - name: Oil Platform
+    id: 1252115
+  - name: Pumpkin Valley
+    id: 1252114
+  - name: Race Mode
+    id: 1242169
+  - name: Ragazza Plains
+    id: 1251971
+  - name: Sky Fortress
+    id: 1252112
+  - name: The Black Widow
+    id: 1252122
+  - name: The Spider's Web
+    id: 1252122
