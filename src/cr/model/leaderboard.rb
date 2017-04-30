@@ -18,6 +18,7 @@ module ChelshiaRocks
     field :name, type: String
 
     has_many :entrys
+    has_many :users, through: :entrys
 
     # URL to this leaderboard's Steam page
     def url
