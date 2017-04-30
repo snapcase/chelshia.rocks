@@ -8,6 +8,10 @@ module ChelshiaRocks
     # ID of this leaderboards application
     field :app_id, type: String
 
+    # Name of this leaderboard
+    # @note This is not supplied by Steam::API, and must be provided if desired
+    field :name, type: String
+
     # This leaderboard's steam ID
     field :leaderboard_id, type: String
 
