@@ -69,7 +69,7 @@ module ChelshiaRocks
       new_entries = []
 
       data.map do |e|
-        new_entries << Entry.create(
+        entry = Entry.create(
           score: e[:score],
           rank: e[:rank],
           timestamp: Time.now,
@@ -78,6 +78,7 @@ module ChelshiaRocks
         )
 
         updated_ranks[entry.rank - 1] = entry.id
+        new_entries << entry
       end
 
       update(latest_entries: updated_ranks)
