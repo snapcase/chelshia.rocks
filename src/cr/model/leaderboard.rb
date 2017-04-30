@@ -38,6 +38,14 @@ module ChelshiaRocks
       latest_entries.map { |id| Entry.find id }
     end
 
+    # Returns a user's entry for this leaderboard
+    # @param data [String, Integer, User] the id or User object to look for
+    # @return [User]
+    def user(data)
+      id = data.is_a?(User) ? data.id : data
+      board.find { |e| e.user.steam_id == id.to_s }
+    end
+
     # Fetches a leaderboard object from the database. If it isn't found,
     # a request will be made to cache it from Steam unless
     # `request` is `false`.
