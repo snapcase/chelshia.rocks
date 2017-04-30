@@ -1,5 +1,4 @@
-class UserController < Sinatra::Base
-
+class UserController < ApplicationController
   get '/' do
     "Users Index"
   end
