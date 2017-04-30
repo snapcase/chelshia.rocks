@@ -19,7 +19,7 @@ module ChelshiaRocks
     field :total_entries, type: Integer
 
     # Array containing the IDs of the latest entries for each rank
-    field :latest_entries
+    field :latest_entries, type: Array
 
     # The name of this leaderboard
     field :name, type: String
