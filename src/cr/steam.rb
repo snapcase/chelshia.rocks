@@ -7,13 +7,18 @@ module Steam
 
     module_function
 
-    # get a user
+    # Get a user
+    # @param [steam_id] the steam ID of the user
     # @return [Hash]
     def user(steam_id)
       get "profiles/#{steam_id}"
     end
 
-    # get a leaderboard
+    # Get a leaderboard
+    # @param app_id [Integer] ID of the Steam application
+    # @param id [Integer] ID of the leaderboard
+    # @param start [Integer] index start of paginated responses
+    # @param _end [Integer] index end of paginated responses
     # @return [Hash]
     def leaderboard(appid, id, start = 1, _end = 20)
       get "stats/#{appid}/leaderboards/#{id}",
