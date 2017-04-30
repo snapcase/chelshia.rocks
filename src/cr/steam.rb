@@ -9,8 +9,8 @@ module Steam
 
     # get a user
     # @return [Hash]
-    def user(steamid)
-      get "profiles/#{steamid}"
+    def user(steam_id)
+      get "profiles/#{steam_id}"
     end
 
     # get a leaderboard
