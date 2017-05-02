@@ -6,13 +6,13 @@ class LeaderboardController < ApplicationController
   end
 
   get '/:id' do
-    @leaderboard = ChelshiaRocks::Leaderboard.leaderboard(params['id'])
+    @leaderboard = ChelshiaRocks::Leaderboard.leaderboard(params['id'], request: false)
     haml :leaderboard
   end
 
   get '/:board_id/:user_id' do
-    @leaderboard = ChelshiaRocks::Leaderboard.leaderboard(params['board_id'])
-    @user = ChelshiaRocks::User.user(params['user_id'])
+    @leaderboard = ChelshiaRocks::Leaderboard.leaderboard(params['board_id'], request: false)
+    @user = ChelshiaRocks::User.user(params['user_id'], request: false)
     @entries = @leaderboard.entrys.where(user: @user).to_a
 
     haml :leaderboard_user
