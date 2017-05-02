@@ -1,0 +1,9 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %title= "#{@user.name}'s #{@leaderboard.name} scores "
+  %body
+    %img{src: @user.avatar_url}
+    %h1= "#{@user.name}'s #{@leaderboard.name} scores"
+    - @entries.sort_by(&:timestamp).reverse.each do |e|
+      %p= "#{e.timestamp} - #{e.time_str} (rank #{e.rank})"
