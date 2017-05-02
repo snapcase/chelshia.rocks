@@ -3,5 +3,9 @@
   %head
     %title test
   %body
-    - @leaderboards.each do |l|
-      %p= "<a href=\"/leaderboards/#{l.leaderboard_id}\">#{l.name}</a>"
+    %h4= @leaderboards.map { |l| "<a href=\"/leaderboards/#{l.leaderboard_id}\">#{l.name}</a>" }.join(" | ")
+    %ol
+      - @users.each do |u|
+        %li
+          %img{src: u.avatar_url, style: 'width:50px;height:50px;'}
+          %a{href: "/users/#{u.steam_id}"}= "#{u.name} (#{u.score} points)"

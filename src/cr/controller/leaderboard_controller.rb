@@ -1,6 +1,7 @@
 class LeaderboardController < ApplicationController
   get '/' do
     @leaderboards = ChelshiaRocks::Leaderboard.to_a
+    @users = ChelshiaRocks::User.order_by(score: :desc).limit(20).to_a
     haml :index
   end
 
