@@ -7,12 +7,17 @@ class LeaderboardController < ApplicationController
 
   get '/:id' do
     @leaderboard = ChelshiaRocks::Leaderboard.leaderboard(params['id'], request: false)
+    halt(404) unless @leaderboard
+
     haml :leaderboard
   end
 
   get '/:board_id/:user_id' do
     @leaderboard = ChelshiaRocks::Leaderboard.leaderboard(params['board_id'], request: false)
     @user = ChelshiaRocks::User.user(params['user_id'], request: false)
+
+    halt(404) unless @leaderboard && @user
+
     @entries = @leaderboard.entrys.where(user: @user).to_a
 
     haml :leaderboard_user
