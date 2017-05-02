@@ -1,0 +1,8 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %title= @leaderboard.name
+  %body
+    %h1= @leaderboard.name
+    - @leaderboard.board.each do |e, i|
+      %p= "<img style=\"width:100;height:100px;\" src=#{e.user.avatar_url}> #{e.rank}. #{e.user.name} (#{e.time_str})"

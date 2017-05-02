@@ -3,5 +3,5 @@
   %head
     %title test
   %body
-    .container
-      wut
+    - @leaderboards.each do |l|
+      %p= "<a href=\"/leaderboards/#{l.leaderboard_id}\">#{l.name}</a>"
