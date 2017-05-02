@@ -9,7 +9,8 @@ class WebsiteController < ApplicationController
   end
 
   ChelshiaRocks::Leaderboard.each do |lb|
-    name = lb.name.gsub(' ', '').gsub('\'', '').downcase
+    name = lb.name.delete("' ").downcase
+
     get "/#{name}" do
       redirect to "/leaderboards/#{lb.leaderboard_id}"
     end
