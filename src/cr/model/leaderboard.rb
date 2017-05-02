@@ -68,6 +68,8 @@ module ChelshiaRocks
     # an API request, or with the data provided.
     def refresh!(data = nil)
       update_time = Time.now
+      data ||= Steam::API.leaderboard(app_id, leaderboard_id)[:entries][:entry]
+
 
       data ||= Steam::API.leaderboard(app_id, leaderboard_id)[:entries][:entry]
       
