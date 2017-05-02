@@ -72,24 +72,24 @@ module ChelshiaRocks
       data ||= Steam::API.leaderboard(app_id, leaderboard_id)[:entries][:entry]
 
       updated_ranks = []
-      new_entries = []
 
-      data.map do |e|
-        entry = Entry.create(
-          score: e[:score],
-          rank: e[:rank],
-          timestamp: Time.now,
-          leaderboard: self,
-          user: User.user(e[:steamid])
-        )
+      data.each do |e|
+        entry = if e[:score] == user(e[:steamid])&.score
+                  user(e[:steamid])
+                else
+                  Entry.create(
+                    score: e[:score],
+                    rank: e[:rank],
+                    timestamp: Time.now,
+                    leaderboard: self,
+                    user: User.user(e[:steamid])
+                  )
+                end
 
         updated_ranks[entry.rank - 1] = entry.id
-        new_entries << entry
       end
 
       update(latest_entries: updated_ranks, last_updated: Time.now)
-
-      new_entries.map { |e| e.user.update_score! }
     end
 
     # Helper to refresh all active boards

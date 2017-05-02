@@ -14,6 +14,9 @@ module ChelshiaRocks
     belongs_to :user, index: true
     belongs_to :leaderboard, index: true
 
+    # Hook to update user's score after creation
+    after_create { user.update_score! }
+
     # Return's this entry's score as a formatted time string
     def time_str
       Time.at(score[0..-4].to_f + score[-3..-1].to_f / 1000)
