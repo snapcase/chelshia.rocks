@@ -17,6 +17,9 @@ module ChelshiaRocks
     belongs_to :user, index: true
     belongs_to :leaderboard, index: true
 
+    # Hook to set score field after init, before saving
+    before_create { self.score = Time.at(time[0..-4].to_f + time[-3..-1].to_f / 1000).to_f }
+
     # Hook to update user's score after creation
     after_create { user.update_score! }
 
