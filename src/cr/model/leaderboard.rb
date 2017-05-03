@@ -18,9 +18,6 @@ module ChelshiaRocks
     # The total number of entries available from Steam
     field :total_entries, type: Integer
 
-    # Array containing the IDs of the latest entries for each rank
-    field :latest_entries, type: Array
-
     # The name of this leaderboard
     field :name, type: String
 
@@ -41,7 +38,7 @@ module ChelshiaRocks
     # The most recent entries for this board
     # @return [Array<Entry>]
     def board
-      latest_entries.map { |id| Entry.find id }
+      # TODO
     end
 
     # Returns a user's entry for this leaderboard
