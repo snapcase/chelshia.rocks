@@ -4,7 +4,9 @@ class UserController < ApplicationController
   end
 
   get '/:id' do
-    "Users #{params[:id]} Show"
-  end
+    @user = ChelshiaRocks::User.user(params['id'])
+    halt(404) unless @user
 
+    haml :user
+  end
 end
