@@ -69,27 +69,24 @@ module ChelshiaRocks
     # Refreshes this leaderboard's entries by making
     # an API request, or with the data provided.
     def refresh!(data = nil)
+      update_time = Time.now
+
       data ||= Steam::API.leaderboard(app_id, leaderboard_id)[:entries][:entry]
 
-      updated_ranks = []
-
       data.each do |e|
-        entry = if e[:score] == user(e[:steamid])&.score
-                  user(e[:steamid])
-                else
-                  Entry.create(
-                    score: e[:score],
-                    rank: e[:rank],
-                    timestamp: Time.now,
-                    leaderboard: self,
-                    user: User.user(e[:steamid])
-                  )
-                end
+        this_user = User.user(e[:steamid])
+        next unless entrys.where(user: this_user, time: e[:score]).count.zero?
 
-        updated_ranks[entry.rank - 1] = entry.id
+        Entry.create(
+          user: this_user,
+          leaderboard: self,
+          time: e[:score],
+          rank: e[:rank],
+          timestamp: update_time
+        )
       end
 
-      update(latest_entries: updated_ranks, last_updated: Time.now)
+      update(last_updated: update_time)
     end
 
     # Helper to refresh all active boards
