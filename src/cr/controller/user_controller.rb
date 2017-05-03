@@ -7,6 +7,8 @@ class UserController < ApplicationController
     @user = ChelshiaRocks::User.user(params['id'])
     halt(404) unless @user
 
+    @boards = user.leaderboards
+
     haml :user
   end
 end
