@@ -1,0 +1,17 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %title= @user.name
+  %body
+    %img{src: @user.avatar_url}
+    %h1
+      = @user.name
+    %a{href: @user.profile_url} View on Steam
+    .recent_entries
+      %h2 Recent Entries
+      - @user.entrys.order_by(timestamp: :desc).each do |e|
+        %p= "#{e.timestamp} | #{e.leaderboard.name} - #{e.time_str} (rank #{e.rank})"
+    .held_ranks
+      %h2 Held Ranks
+      - @boards.each do |b|
+        %p= "#{b.name} - Rank #{b.user(@user.steam_id).rank} @ #{b.user(@user.steam_id).time_str}"
