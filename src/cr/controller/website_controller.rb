@@ -5,7 +5,7 @@ class WebsiteController < ApplicationController
 
   get '/about' do
     @title = "All About This Website"
-    # haml :about
+    haml :about, layout: :main
   end
 
   ChelshiaRocks::Leaderboard.each do |lb|
