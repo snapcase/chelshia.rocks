@@ -3,7 +3,10 @@ module ChelshiaRocks
     include NoBrainer::Document
 
     # This entry's score
-    field :score, type: String
+    field :score, type: Float
+
+    # This entry's score, as a time string
+    field :time, type: String
 
     # This entry's rank, at the time of creation
     field :rank, type: Integer
