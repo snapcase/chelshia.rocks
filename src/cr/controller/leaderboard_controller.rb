@@ -2,14 +2,16 @@ class LeaderboardController < ApplicationController
   get '/' do
     @leaderboards = ChelshiaRocks::Leaderboard.to_a
     @users = ChelshiaRocks::User.order_by(score: :desc).limit(20).to_a
-    haml :index
+    @title = 'Leaderboards'
+    haml :index, layout: :main
   end
 
   get '/:id' do
     @leaderboard = ChelshiaRocks::Leaderboard.leaderboard(params['id'], request: false)
     halt(404) unless @leaderboard
 
-    haml :leaderboard
+    @title = @leaderboard.name
+    haml :leaderboard, layout: :main
   end
 
   get '/:board_id/:user_id' do
@@ -20,6 +22,7 @@ class LeaderboardController < ApplicationController
 
     @entries = @leaderboard.entrys.where(user: @user).to_a
 
-    haml :leaderboard_user
+    @title = "#{@user.name}'s #{@leaderboard.name} scores"
+    haml :leaderboard_user, layout: :main
   end
 end

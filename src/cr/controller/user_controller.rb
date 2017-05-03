@@ -9,6 +9,7 @@ class UserController < ApplicationController
 
     @boards = @user.leaderboards
 
-    haml :user
+    @title = @user.name
+    haml :user, layout: :main
   end
 end

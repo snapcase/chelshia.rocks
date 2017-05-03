@@ -10,5 +10,5 @@ class ApplicationController < Sinatra::Base
 
   # use AssetHandler
 
-  not_found{ haml :not_found }
+  not_found{ haml :not_found, layout: :main }
 end

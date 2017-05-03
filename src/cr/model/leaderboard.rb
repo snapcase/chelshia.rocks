@@ -89,6 +89,8 @@ module ChelshiaRocks
         updated_ranks[entry.rank - 1] = entry.id
       end
 
+      puts "updating latest with: #{updated_ranks}"
+
       update(latest_entries: updated_ranks, last_updated: Time.now)
     end
 

@@ -1,18 +1,13 @@
-!!!
-%html{:lang => "en"}
-  %head
-    %title Chelshia Rocks!
-  %body
-    %h4= @leaderboards.map { |l| "<a href=\"/leaderboards/#{l.leaderboard_id}\">#{l.name}</a>" }.join(" | ")
-    %table
-      %tr
-        %th #
-        %th Name
-        %th Score
-      - @users.each_with_index do |u, i|
-        %tr
-          %td= i + 1
-          %td
-            %img{src: u.avatar_url, style: 'width:50px;height:50px;'}
-            %a{href: "/users/#{u.steam_id}"}= u.name
-          %td= u.score
+%h4= @leaderboards.map { |l| "<a href=\"/leaderboards/#{l.leaderboard_id}\">#{l.name}</a>" }.join(" | ")
+%table
+  %tr
+    %th #
+    %th Name
+    %th Score
+  - @users.each_with_index do |u, i|
+    %tr
+      %td= i + 1
+      %td
+        %img{src: u.avatar_url, style: 'width:50px;height:50px;'}
+        %a{href: "/users/#{u.steam_id}"}= u.name
+      %td= u.score
