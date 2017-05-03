@@ -38,7 +38,7 @@ module ChelshiaRocks
     # The most recent entries for this board
     # @return [Array<Entry>]
     def board
-      # TODO
+      users.to_a.map { |u| u.latest_on(self) }.sort_by(&:score)
     end
 
     # Returns a user's entry for this leaderboard
