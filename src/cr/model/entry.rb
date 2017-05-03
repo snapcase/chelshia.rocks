@@ -22,7 +22,7 @@ module ChelshiaRocks
 
     # Return's this entry's score as a formatted time string
     def time_str
-      Time.at(score[0..-4].to_f + score[-3..-1].to_f / 1000)
+      Time.at(time[0..-4].to_f + time[-3..-1].to_f / 1000)
           .strftime("%M:%S.%L")
     end
 
