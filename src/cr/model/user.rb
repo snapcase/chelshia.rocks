@@ -27,6 +27,11 @@ module ChelshiaRocks
       "#{Steam::API::BASE_URL}/profiles/#{steam_id}"
     end
 
+    # This user's latest entry on a board
+    def latest_on(board)
+      board.entrys.where(user: self).last
+    end
+
     # Update this user's score
     def update_score!
       entries = leaderboards.to_a.map do |lb|
