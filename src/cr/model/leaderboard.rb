@@ -45,7 +45,8 @@ module ChelshiaRocks
     # @param data [String, Integer, User] the id or User object to look for
     # @return [User]
     def user(data)
-      id = data.is_a?(User) ? data.id : data
+      id = data.is_a?(User) ? data.steam_id : data
+      # TODO: Will not work until #board is reimplemented
       board.find { |e| e.user.steam_id == id.to_s }
     end
 
