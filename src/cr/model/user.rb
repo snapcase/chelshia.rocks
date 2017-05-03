@@ -29,10 +29,11 @@ module ChelshiaRocks
 
     # Update this user's score
     def update_score!
-      value = leaderboards.map do |l|
-        next 0 unless l.scored?
-        Score.value l.user(self.steam_id)&.rank || 0
-      end.reduce(:+)
+      entries = leaderboards.to_a.map do |lb|
+        lb.entrys.where(user: self).last
+      end
+
+      value = entries.map { |e| Score.value e.rank }.reduce(:+)
 
       update(score: value)
 
