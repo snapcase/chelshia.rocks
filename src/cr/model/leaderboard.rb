@@ -98,7 +98,6 @@ module ChelshiaRocks
         app_id: data[:appid],
         leaderboard_id: data[:leaderboardid],
         total_entries: data[:totalleaderboardentries].to_i,
-        latest_entries: [],
         name: name,
         scored: scored
       )
