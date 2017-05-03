@@ -14,4 +14,4 @@
     .held_ranks
       %h2 Held Ranks
       - @boards.each do |b|
-        %p= "#{b.name} - Rank #{b.user(@user.steam_id).rank} @ #{b.user(@user.steam_id).time_str}"
+        %p= e = @user.latest_on(b) ; "#{b.name} - Rank #{e.rank} @ #{e.time_str}"
