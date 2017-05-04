@@ -16,6 +16,9 @@ module ChelshiaRocks
     # Time this user was created
     field :created_at, type: Time
 
+    # Timestamp of last update
+    field :last_updated, type: Time
+
     # This user's game-wide score
     field :score, type: Integer, default: 0
 
@@ -50,7 +53,8 @@ module ChelshiaRocks
       data = Steam::API.user(steam_id).first
       update(
         name: data[:personaname],
-        avatar_url: data[:avatarfull]
+        avatar_url: data[:avatarfull],
+        last_updated: Time.now
       )
     end
 
