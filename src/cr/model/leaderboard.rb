@@ -74,6 +74,9 @@ module ChelshiaRocks
       updated_ranks = []
       new_entries = []
 
+      user_ids = data.map { |e| e[:steamid] }.select { |id| User.user(id, request: false).nil? }
+      User.from_array Steam::API.user(user_ids) if user_ids.any?
+
       data.map do |e|
         entry = Entry.create(
           score: e[:score],

@@ -41,9 +41,9 @@ module ChelshiaRocks
 
     # Update's this users Steam data
     def update!
-      data = Steam::API.user(steam_id)
+      data = Steam::API.user(steam_id).first
       update(
-        name: data[:steamid],
+        name: data[:personaname],
         avatar_url: data[:avatarfull]
       )
     end
@@ -58,17 +58,20 @@ module ChelshiaRocks
       return user if user
       return unless request
 
-      from_hash Steam::API.user(steam_id)
+      from_array Steam::API.user(steam_id)[:response][:players].first
     end
 
-    # Creates a new User from a Steam API user hash
-    def self.from_hash(data)
-      create(
-        steam_id: data[:steamid64],
-        name: data[:steamid],
-        avatar_url: data[:avatarfull],
-        created_at: Time.now
-      )
+    # Creates new Users from the Steam API user hash
+    # @param data [Array<Hash>] The user objects passed from the json array
+    def self.from_array(data)
+      data.each do |user|
+        create(
+          steam_id: user[:steamid],
+          name: user[:personaname],
+          avatar_url: user[:avatarfull],
+          created_at: Time.now
+        )
+      end
     end
   end
 end
