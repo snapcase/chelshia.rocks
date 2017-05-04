@@ -70,6 +70,9 @@ module ChelshiaRocks
       update_time = Time.now
 
       data ||= Steam::API.leaderboard(app_id, leaderboard_id)[:entries][:entry]
+      
+      user_ids = data.map { |e| e[:steamid] }.select { |id| User.user(id, request: false).nil? }
+      User.from_array Steam::API.user(user_ids) if user_ids.any?
 
       data.each do |e|
         this_user = User.user(e[:steamid])
@@ -77,9 +80,9 @@ module ChelshiaRocks
 
         Entry.create(
           user: this_user,
+          rank: e[:rank],
           leaderboard: self,
           time: e[:score],
-          rank: e[:rank],
           timestamp: update_time
         )
       end
