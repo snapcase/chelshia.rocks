@@ -32,7 +32,7 @@ module ChelshiaRocks
 
     # URL to this leaderboard's Steam page
     def url
-      "#{Steam::API::BASE_URL}/stats/#{app_id}/leaderboards/#{leaderboard_id}"
+      "#{Steam::API::COMMUNITY_URL}/stats/#{app_id}/leaderboards/#{leaderboard_id}"
     end
 
     # The most recent entries for this board
