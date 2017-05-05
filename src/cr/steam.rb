@@ -6,6 +6,18 @@ module Steam
   module API
     module_function
 
+    # Generic GET request handler
+    # @param route [String] the route to send a request to
+    # @param params [Hash] querystring parameters
+    # @param parser [Symbol] either :json or :xml will parse using those parsers. Any other value (nil) returns the raw response
+    def get(route = '', params = {}, parser = :json)
+      response = RestClient.get(route, params: params)
+
+      return JSON.parse(response, symbolize_name: true) if parser == :json
+      return XmlSimple.xml_in(response, keytosymbol: true, forcearray: false) if parser == :xml
+      response
+    end
+
     # Get one or more users by Steam ID
     # @param steam_id [Integer, String, Array<Integer, String>] One or more Steam ID's
     # @return [Array<Hash>]
