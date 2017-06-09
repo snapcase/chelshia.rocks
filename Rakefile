@@ -12,7 +12,8 @@ namespace :db do
     abort('please set your steam api key') unless ENV['STEAM_API_KEY']
     boards = YAML.load_file('data/boards.yml')['boards']
     boards.each do |board|
-      ChelshiaRocks::Leaderboard.leaderboard(board['id'], name: board['name'])
+      id = board.delete('id')
+      ChelshiaRocks::Leaderboard.leaderboard(id, board.symbolize_keys)
     end
   end
 end
