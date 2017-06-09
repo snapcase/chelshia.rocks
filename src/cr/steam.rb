@@ -19,7 +19,7 @@ module Steam
     def get(route = '', params = {}, parser = :json)
       response = RestClient.get(route, params: params)
 
-      return JSON.parse(response, symbolize_name: true) if parser == :json
+      return JSON.parse(response, symbolize_names: true) if parser == :json
       return XmlSimple.xml_in(response, keytosymbol: true, forcearray: false) if parser == :xml
       response
     end
