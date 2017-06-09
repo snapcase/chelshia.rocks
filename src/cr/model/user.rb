@@ -27,7 +27,7 @@ module ChelshiaRocks
 
     # URL to this user's steam profile
     def profile_url
-      "#{Steam::API::BASE_URL}/profiles/#{steam_id}"
+      "#{Steam::API::COMMUNITY_URL}/profiles/#{steam_id}"
     end
 
     # This user's latest entry on a board
