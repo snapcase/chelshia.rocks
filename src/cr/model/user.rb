@@ -41,7 +41,7 @@ module ChelshiaRocks
         lb.entrys.where(user: self).last
       end
 
-      value = entries.map { |e| Score.value e.rank }.reduce(:+)
+      value = entries.map { |e| e.leaderboard.scored ? Score.value(e.rank) : 0 }.reduce(:+)
 
       update(score: value)
 
